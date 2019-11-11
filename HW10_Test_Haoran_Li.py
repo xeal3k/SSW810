@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 from prettytable import PrettyTable
 import unittest
 class TestHW9(unittest.TestCase):
