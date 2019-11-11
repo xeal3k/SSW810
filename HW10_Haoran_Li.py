@@ -1,16 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[26]:
-
-
-from IPython.core.display import display, HTML
-display(HTML("<style>.container { width:100% !important; }</style>"))
-
-
-# In[27]:
-
-
 from prettytable import PrettyTable
 def file_reading_gen(filename, field, sep, header = False):
     """
@@ -37,11 +24,7 @@ def file_reading_gen(filename, field, sep, header = False):
         yield (line[i] for i in range(field))
     
     file.close()
-
-
-# In[32]:
-
-
+    
 class Major():
     def __init__(self, coursefile):
         self.namefile = coursefile
@@ -72,13 +55,6 @@ class Major():
             x.add_row([item, self.info[item]["r"], self.info[item]["e"]])
         
         print(x)
-        
-a = Major("majors.txt")
-a.pretty_print()    
-
-
-# In[50]:
-
 
 class Student():
     """
@@ -133,14 +109,6 @@ class Student():
             x.add_row([item[0], item[1], item[2], sorted_course, rr, re])
         
         print(x)
-                
-a = Student("students.txt", "grades.txt", "majors.txt")
-a.analyze_files()
-a.pretty_print()
-
-
-# In[57]:
-
 
 class Instructor():
     """
@@ -179,14 +147,6 @@ class Instructor():
         
         print(x)
         return x
-        
-a = Instructor("students.txt", "grades.txt")
-a.analyze_files()
-a.pretty_print()
-
-
-# In[48]:
-
 
 class Repository():
     """
@@ -216,10 +176,6 @@ class Repository():
         mj.pretty_print()
         st.pretty_print()
         ins.pretty_print()
-
-
-# In[49]:
-
 
 def main():
     """
@@ -257,45 +213,3 @@ def main():
     
     
 main()
-
-
-# In[64]:
-
-
-from prettytable import PrettyTable
-import unittest
-class TestHW9(unittest.TestCase):
-    def test_student(self):
-        stfile = "students.txt"
-        gdfile = "grades.txt"
-        majorfile = "majors.txt"
-        st = Student(stfile, gdfile, majorfile)
-        st.analyze_files()
-        self.assertEqual(len(st.info), 10)
-        self.assertEqual(st.info[0][0], "10103")
-    
-    def test_instructor(self):
-        insfile = "instructors.txt"
-        gdfile = "grades.txt"
-        ins = Instructor(insfile, gdfile)
-        ins.analyze_files()
-        self.assertEqual(len(ins.info), 12)
-        self.assertEqual(ins.info[0][0], "98765")
-        self.assertEqual(ins.info[1][1], "Einstein, A")
-        
-    def test_major(self):
-        majorfile = "majors.txt"
-        mj = Major(majorfile)
-        mj.analyze_files()
-        self.assertEqual(len(mj.info), 2)
-        self.assertEqual(len(mj.info["SFEN"]["r"]), 4)
-
-if __name__ == "__main__":
-    unittest.main(argv=['first-arg-is-ignored'], exit=False, verbosity = 2)
-
-
-# In[ ]:
-
-
-
-
